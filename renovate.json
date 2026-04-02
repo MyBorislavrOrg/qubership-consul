@@ -75,7 +75,7 @@
       "depNameTemplate": "Netcracker/qubership-test-pipelines",
       "datasourceTemplate": "github-releases",
       "versioningTemplate": "loose",
-      "autoReplaceStringTemplate": "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@{{{newValue}}} #v1.6.0\n    with:\n      service_branch: '${{ github.head_ref || github.ref_name }}'\n      pipeline_branch: '{{{newValue}}}' #this value must match the value after '@' in 'uses'"
+      "autoReplaceStringTemplate": "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@{{{newValue}}}\n    with:\n      service_branch: '${{ github.head_ref || github.ref_name }}'\n      pipeline_branch: '{{{newValue}}}'"
     }
   ]
 }
