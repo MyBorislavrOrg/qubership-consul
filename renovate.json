@@ -1,0 +1,81 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "schedule": [
+    "every weekend"
+  ],
+  "packageRules": [
+    // GitHub Actions
+    {
+      "matchManagers": ["github-actions"],
+      "matchFileNames": ["**/.github/workflows/**"],
+      "schedule": ["every weekend"]
+    },
+
+    // Go modules (gomod)
+    {
+      "matchManagers": ["gomod"],
+      "matchFileNames": [
+        "disaster-recovery/go.mod",
+        "acl-configurator/rest-acl-configurator/go.mod",
+        "acl-configurator/consul-acl-configurator-operator/go.mod"
+      ],
+      "schedule": ["every weekend"]
+    },
+
+    // Docker (Dockerfiles)
+    {
+      "matchManagers": ["dockerfile"],
+      "matchFileNames": [
+        "docker-transfer/**/Dockerfile",
+        "backup-daemon/docker/**/Dockerfile",
+        "disaster-recovery/docker/**/Dockerfile",
+        "integration-tests/docker/**/Dockerfile",
+        "acl-configurator/sdk-tool/**/Dockerfile",
+        "acl-configurator/rest-acl-configurator/**/Dockerfile",
+        "acl-configurator/consul-acl-configurator-operator/**/Dockerfile",
+        "remove-tokens/docker/**/Dockerfile"
+      ],
+      "schedule": ["every weekend"]
+    },
+
+    // Python (pip / requirements.txt и т.п.)
+    {
+      "matchManagers": ["pip"],
+      "matchFileNames": [
+        "backup-daemon/docker/**/requirements*.txt",
+        "backup-daemon/docker/**/setup.py",
+        "backup-daemon/docker/**/pyproject.toml",
+        "integration-tests/docker/**/requirements*.txt",
+        "integration-tests/docker/**/setup.py",
+        "integration-tests/docker/**/pyproject.toml"
+      ],
+      "schedule": ["every weekend"]
+    },
+    {
+      "matchManagers": ["custom"],
+      "matchDepNames": ["Netcracker/qubership-test-pipelines"],
+      "groupName": "Consul Pipeline reusable workflow",
+      "schedule": ["every weekend"]
+    }
+  ],
+  "customManagers": [
+    {
+      "description": "Sync Consul-Pipeline reusable workflow version with pipeline_branch",
+      "fileMatch": [
+        "^\\.github/workflows/.*\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "uses:\\s*Netcracker/qubership-test-pipelines/\\.github/workflows/consul\\.yaml@(?<currentValue>[a-f0-9]+)",
+        "pipeline_branch:\\s*['\"]?(?<currentValue>[a-f0-9]+)['\"]?"
+      ],
+      "matchStringsStrategy": "combination",
+      "depNameTemplate": "Netcracker/qubership-test-pipelines",
+      "datasourceTemplate": "github-releases",
+      "versioningTemplate": "loose",
+      "autoReplaceStringTemplate": "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@{{{newValue}}} #v1.6.0\n    with:\n      service_branch: '${{ github.head_ref || github.ref_name }}'\n      pipeline_branch: '{{{newValue}}}' #this value must match the value after '@' in 'uses'"
+    }
+  ]
+}
