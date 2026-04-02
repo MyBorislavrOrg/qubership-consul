@@ -60,22 +60,22 @@
       "groupName": "Consul Pipeline reusable workflow",
       "schedule": ["every weekend"]
     }
-  ],
-  "customManagers": [
-    {
-      "description": "Sync Consul-Pipeline reusable workflow version with pipeline_branch",
-      "fileMatch": [
-        "^\\.github/workflows/.*\\.ya?ml$"
-      ],
-      "matchStrings": [
-        "uses:\\s*Netcracker/qubership-test-pipelines/\\.github/workflows/consul\\.yaml@(?<currentValue>[a-f0-9]+)",
-        "pipeline_branch:\\s*['\"]?(?<currentValue>[a-f0-9]+)['\"]?"
-      ],
-      "matchStringsStrategy": "combination",
-      "depNameTemplate": "Netcracker/qubership-test-pipelines",
-      "datasourceTemplate": "github-releases",
-      "versioningTemplate": "loose",
-      "autoReplaceStringTemplate": "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@{{{newValue}}}\n    with:\n      service_branch: '${{ github.head_ref || github.ref_name }}'\n      pipeline_branch: '{{{newValue}}}'"
-    }
-  ]
+  ] //,
+  //"customManagers": [
+    //{
+    //  "description": "Sync Consul-Pipeline reusable workflow version with pipeline_branch",
+    //  "fileMatch": [
+    //    "^\\.github/workflows/.*\\.ya?ml$"
+    //  ],
+    //  "matchStrings": [
+    //    "uses:\\s*Netcracker/qubership-test-pipelines/\\.github/workflows/consul\\.yaml@(?<currentValue>[a-f0-9]+)",
+    //    "pipeline_branch:\\s*['\"]?(?<currentValue>[a-f0-9]+)['\"]?"
+    //  ],
+    //  "matchStringsStrategy": "combination",
+    //  "depNameTemplate": "Netcracker/qubership-test-pipelines",
+    //  "datasourceTemplate": "github-releases",
+    //  "versioningTemplate": "loose",
+    //  "autoReplaceStringTemplate": "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@{{{newValue}}}\n    with:\n      service_branch: '${{ github.head_ref || github.ref_name }}'\n      pipeline_branch: '{{{newValue}}}'"
+    //}
+  //]
 }
