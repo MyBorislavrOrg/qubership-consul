@@ -55,27 +55,24 @@
       "schedule": ["every weekend"]
     },
     {
-      "matchManagers": ["custom"],
-      "matchDepNames": ["Netcracker/qubership-test-pipelines"],
-      "groupName": "Consul Pipeline reusable workflow",
-      "schedule": ["every weekend"]
+      "matchPackageNames": ["Netcracker/qubership-test-pipelines"],
+      "matchManagers": ["regex"],
+      "commitMessageTopic": "consul workflow",
+      "branchTopic": "renovate/consul-workflow-{{newValue}}",
+      "automerge": false
     }
-  ] //,
-  //"customManagers": [
-    //{
-    //  "description": "Sync Consul-Pipeline reusable workflow version with pipeline_branch",
-    //  "fileMatch": [
-    //    "^\\.github/workflows/.*\\.ya?ml$"
-    //  ],
-    //  "matchStrings": [
-    //    "uses:\\s*Netcracker/qubership-test-pipelines/\\.github/workflows/consul\\.yaml@(?<currentValue>[a-f0-9]+)",
-    //    "pipeline_branch:\\s*['\"]?(?<currentValue>[a-f0-9]+)['\"]?"
-    //  ],
-    //  "matchStringsStrategy": "combination",
-    //  "depNameTemplate": "Netcracker/qubership-test-pipelines",
-    //  "datasourceTemplate": "github-releases",
-    //  "versioningTemplate": "loose",
-    //  "autoReplaceStringTemplate": "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@{{{newValue}}}\n    with:\n      service_branch: '${{ github.head_ref || github.ref_name }}'\n      pipeline_branch: '{{{newValue}}}'"
-    //}
-  //]
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["\\.ya?ml$"],
+      "matchStrings": [
+        "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@(?<currentDigest>[a-f0-9]+).*?pipeline_branch: '(?<currentValue>[a-f0-9]+)'"
+      ],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "Netcracker/qubership-test-pipelines",
+      "versioningTemplate": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
+      "extractVersionTemplate": "^.github/workflows/consul.yaml@(?<version>v?\\d+\\.\\d+\\.\\d+|[a-f0-9]{40})$",
+      "autoReplaceStringTemplate": "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@{{#if newDigest}}{{newDigest}}{{else}}{{newValue}}{{/if}}\npipeline_branch: '{{#if newDigest}}{{newDigest}}{{else}}{{newValue}}{{/if}}'"
+    }
+  ]
 }
