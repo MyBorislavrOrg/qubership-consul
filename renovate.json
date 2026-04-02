@@ -66,13 +66,12 @@
     {
       "fileMatch": ["\\.ya?ml$"],
       "matchStrings": [
-        "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@(?<currentDigest>[a-f0-9]+).*?pipeline_branch: '(?<currentValue>[a-f0-9]+)'"
+        "pipeline_branch: '(?<currentValue>[a-f0-9]+)'"
       ],
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "Netcracker/qubership-test-pipelines",
       "versioningTemplate": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$",
-      "extractVersionTemplate": "^.github/workflows/consul.yaml@(?<version>v?\\d+\\.\\d+\\.\\d+|[a-f0-9]{40})$",
-      "autoReplaceStringTemplate": "uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@{{#if newDigest}}{{newDigest}}{{else}}{{newValue}}{{/if}}\npipeline_branch: '{{#if newDigest}}{{newDigest}}{{else}}{{newValue}}{{/if}}'"
+      "autoReplaceStringTemplate": "pipeline_branch: '{{#if newDigest}}{{newDigest}}{{else}}{{newValue}}{{/if}}'"
     }
   ]
 }
