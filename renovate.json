@@ -7,14 +7,11 @@
     "every weekend"
   ],
   "packageRules": [
-    // GitHub Actions
     {
       "matchManagers": ["github-actions"],
       "matchFileNames": ["**/.github/workflows/**"],
       "schedule": ["every weekend"]
     },
-
-    // Go modules (gomod)
     {
       "matchManagers": ["gomod"],
       "matchFileNames": [
@@ -24,8 +21,6 @@
       ],
       "schedule": ["every weekend"]
     },
-
-    // Docker (Dockerfiles)
     {
       "matchManagers": ["dockerfile"],
       "matchFileNames": [
@@ -40,8 +35,6 @@
       ],
       "schedule": ["every weekend"]
     },
-
-    // Python (pip / requirements.txt и т.п.)
     {
       "matchManagers": ["pip"],
       "matchFileNames": [
