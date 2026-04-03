@@ -74,5 +74,14 @@
       "currentValueTemplate": "{{#if currentDigest}}{{{currentDigest}}}{{else}}{{{currentValue}}}{{/if}}",
       "autoReplaceStringTemplate": "pipeline_branch: '{{newDigest}}'"
     }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["\\.ya?ml$"],
+      "matchStrings": ["pipeline_branch: (?<currentValue>.*?)\\n"],
+      "depNameTemplate": "Netcracker/qubership-test-pipelines",
+      "datasourceTemplate": "github-releases"
+    }
   ]
 }
