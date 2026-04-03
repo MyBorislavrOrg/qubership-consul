@@ -12,6 +12,7 @@ jobs:
     uses: Netcracker/qubership-test-pipelines/.github/workflows/consul.yaml@0317a7311f0fdd1e6d492fb3a75d722835851b15 # v1.6.1
     with:
       service_branch: 'main'
+      # renovate: datasource=github-releases depName=netcracker/qubership-test-pipelines versioning=semver
       pipeline_branch: '0317a7311f0fdd1e6d492fb3a75d722835851b15'
       scope: 'nightly'
     secrets:
