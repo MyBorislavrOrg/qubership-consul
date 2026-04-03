@@ -58,7 +58,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "fileMatch": ["*.y?ml"],
+      "fileMatch": ["\\.ya?ml$"],
       "matchStrings": [
          "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?: \"(?<currentValue>.*)\""
       ],
