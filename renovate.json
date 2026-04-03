@@ -53,35 +53,16 @@
         "integration-tests/docker/**/pyproject.toml"
       ],
       "schedule": ["every weekend"]
-    },
-    {
-      "matchPackageNames": ["Netcracker/qubership-test-pipelines"],
-      "matchManagers": ["regex"],
-      "commitMessageTopic": "consul workflow",
-      "branchTopic": "renovate/consul-workflow-{{newValue}}",
-      "automerge": false
-    }
-  ],
-  "regexManagers": [
-    {
-      "fileMatch": ["\\.ya?ml$"],
-      "matchStrings": [
-        "pipeline_branch: '(?<currentDigest>[a-f0-9]{40})'"
-      ],
-      "datasourceTemplate": "github-releases",
-      "depNameTemplate": "Netcracker/qubership-test-pipelines",
-      "extractVersionTemplate": "^(?<version>v?\\d+\\.\\d+\\.\\d+)$",
-      "currentValueTemplate": "{{#if currentDigest}}{{{currentDigest}}}{{else}}{{{currentValue}}}{{/if}}",
-      "autoReplaceStringTemplate": "pipeline_branch: '{{newDigest}}'"
     }
   ],
   "customManagers": [
     {
       "customType": "regex",
-      "managerFilePatterns": ["\\.ya?ml$"],
-      "matchStrings": ["pipeline_branch: (?<currentValue>.*?)\\n"],
-      "depNameTemplate": "Netcracker/qubership-test-pipelines",
-      "datasourceTemplate": "github-releases"
+      "fileMatch": ["*.y?ml"],
+      "matchStrings": [
+         "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?: \"(?<currentValue>.*)\""
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ]
 }
