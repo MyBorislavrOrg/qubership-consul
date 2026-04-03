@@ -53,7 +53,7 @@
       "customType": "regex",
       "fileMatch": ["\\.ya?ml$"],
       "matchStrings": [
-         "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?: \"(?<currentValue>.*)\""
+         "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?pipeline_branch: '(?<currentValue>.*)'"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
