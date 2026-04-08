@@ -54,7 +54,7 @@
       "customType": "regex",
       "fileMatch": [".github/workflows/*"],
       "matchStrings": [
-         "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?pipeline_branch: '(?<currentValue>.*)'"
+         "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?pipeline_branch: '(?<currentDigest>.*)'"
       ],
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}digest{{/if}}"
     }
