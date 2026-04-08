@@ -51,12 +51,13 @@
   ],
   "customManagers": [
     {
+      "pinDigests": true,
       "customType": "regex",
       "fileMatch": ["**/.github/workflows/**"],
       "matchStrings": [
          "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?pipeline_branch: '(?<currentValue>.*)'"
       ],
-      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}digest{{/if}}"
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
   ]
 }
