@@ -52,7 +52,7 @@
   "customManagers": [
     {
       "customType": "regex",
-      "matchFileNames": [".github/workflows/**"],
+      "fileMatch": [".github/workflows/*"],
       "matchStrings": [
          "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?pipeline_branch: '(?<currentValue>.*)'"
       ],
