@@ -53,7 +53,7 @@
     {
       "pinDigests": true,
       "customType": "regex",
-      "fileMatch": ["**/.github/workflows/**"],
+      "fileMatch": [".github/workflows/**"],
       "matchStrings": [
          "datasource=(?<datasource>.*?) depName=(?<depName>.*?) versioning=(?<versioning>.*?)\\n.*?pipeline_branch: '(?<currentValue>.*)'"
       ],
