@@ -10,7 +10,8 @@
     {
       "matchManagers": ["github-actions"],
       "matchFileNames": ["**/.github/workflows/**"],
-      "schedule": ["every weekend"]
+      "schedule": ["every weekend"],
+      "pinDigests": true
     },
     {
       "matchManagers": ["gomod"],
